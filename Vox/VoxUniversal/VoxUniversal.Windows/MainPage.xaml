@@ -8,6 +8,45 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="GridSoundManipulation" Grid.Column="2" Margin="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="62*"/>
+                    <RowDefinition Height="451*"/>
+                    <RowDefinition Height="124*"/>
+                    <RowDefinition Height="71*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="0" Grid.Row="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="buttonRecordNew" Content="Record" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Margin="0" Tapped="button_Tapped"/>
+                    <Button x:Name="buttonPlay" Content="Play" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Grid.Column="3" Tapped="button_Tapped"/>
+                    <Button x:Name="buttonStop" Content="Stop" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Grid.Column="5" Tapped="button_Tapped"/>
+                    <Button x:Name="buttonSave" Content="Save" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" Grid.Column="7" Tapped="button_Tapped"/>
+                </Grid>
+            </Grid>
+            <Grid x:Name="GridEffectsList" Grid.Column="1" Margin="227,296,326,312" Grid.Row="1"/>
+        </Grid>
 
     </Grid>
 </Page>

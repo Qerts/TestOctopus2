@@ -15,9 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
-    <Folder Include="$(MSBuildThisFileDirectory)BLL\" />
+    <Compile Include="$(MSBuildThisFileDirectory)BLL\SoundManipulation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\VoxSimplex.cs" />
   </ItemGroup>
 </Project>
