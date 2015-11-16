@@ -23,12 +23,15 @@ namespace VoxUniversal
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private readonly SoundManipulation _manipulator;
+        private SoundManipulation _manipulator;
         public MainPage()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();                       
+        }
 
-            //move to lazy inicialization
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
             _manipulator = new SoundManipulation();
         }
 
@@ -38,18 +41,34 @@ namespace VoxUniversal
             {
                 case "buttonRecordNew":
                     _manipulator.Record();
+                    buttonPlay.IsEnabled = false;
+                    buttonSave.IsEnabled = false;
+                    buttonRecordNew.IsEnabled = true;
+                    buttonStop.IsEnabled = true;
                     break;
                 case "buttonPlay":
                     _manipulator.Play();
+                    buttonPlay.IsEnabled = true;
+                    buttonSave.IsEnabled = true;
+                    buttonRecordNew.IsEnabled = true;
+                    buttonStop.IsEnabled = true;
                     break;
                 case "buttonStop":
                     _manipulator.Stop();
+                    buttonPlay.IsEnabled = true;
+                    buttonSave.IsEnabled = true;
+                    buttonRecordNew.IsEnabled = true;
+                    buttonStop.IsEnabled = true;
                     break;
                 case "buttonSave":
                     _manipulator.Save();
+                    buttonPlay.IsEnabled = true;
+                    buttonSave.IsEnabled = true;
+                    buttonRecordNew.IsEnabled = true;
+                    buttonStop.IsEnabled = true;
                     break;
                 default:
-                    break;
+                    throw new NotImplementedException("Invalid name of button.");
             }
         }
     }

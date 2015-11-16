@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
 using Windows.Storage;
@@ -32,12 +33,19 @@ namespace VoxUniversal.BLL
 
         public void Record()
         {
-            Task task = Task.Run(async () => {
-                await _capturer.InitializeAsync(_settings);
+            var b = _capturer.InitializeAsync(_settings).AsTask();
+            Task task = Task.Run(async () => {                
+                b.Start();
+
+                b.Wait();
                 StorageFile file = await KnownFolders.MusicLibrary.CreateFileAsync("captured.wav", CreationCollisionOption.ReplaceExisting);
-                await _capturer.StartRecordToStorageFileAsync(_profile, file);                
+                await _capturer.StartRecordToStorageFileAsync(_profile, file);    
             });
+
+            var a = b.Status;
+            var c = b.AsyncState;
         }
+
         public void Play()
         {
             Task task = Task.Run(async () => {
@@ -54,16 +62,31 @@ namespace VoxUniversal.BLL
                 mediaElement.Play();
             });            
         }
+
         public void Stop()
         {
-            Task task = Task.Run(async () => {
-                await _capturer.StopRecordAsync();
+            var a = _capturer.StopRecordAsync().AsTask();
+            Task task = Task.Run(() => {
+                
+                a.Start();
+                a.Wait();
             });
-            task.Wait();
+            var b = a.Status;
+            var c = a.AsyncState;
         }
+
         public void Save()
         {
             //TODO
         }
+
+
+    }
+
+    public enum ManipulationMode
+    {
+        Recording,
+        Playing,
+        Saving
     }
 }
